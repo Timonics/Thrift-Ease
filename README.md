@@ -72,7 +72,7 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/thriftease.git
+   git clone https://github.com/timonics/thrift-ease.git
    ```
 
 2. Navigate to the project directory:
