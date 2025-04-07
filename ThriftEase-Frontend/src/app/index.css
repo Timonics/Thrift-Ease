@@ -1,0 +1,101 @@
+/* @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import "tailwindcss";
+
+body {
+  font-family: "Roboto", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    sans-serif;
+  scroll-behavior: smooth;
+}
+
+input {
+  padding: 8px;
+  outline: none;
+  border-bottom-width: 2px;
+  border-color: #2ecc7180;
+}
+
+.pops {
+  font-family: "Poppins";
+}
+
+.rubik {
+  font-family: "Rubik";
+}
+
+.monte {
+  font-family: "Montserrat";
+}
+
+.appgreen {
+  @apply text-[#2ECC71];
+}
+
+.appdarkblue {
+  @apply text-[#34495E];
+}
+
+.appblue {
+  @apply text-[#9bc8fff0]
+}
+
+.bg-appgreen {
+  @apply bg-[#2ECC71];
+}
+
+.bg-appdarkblue {
+  @apply bg-[#34495E];
+}
+
+.home-background {
+  background: linear-gradient(175deg, #ffffff, #abfdd3b6);
+}
+
+.product-background {
+  background: linear-gradient(135deg, #ffffff69, #9bffc3d8);
+}
+
+.category-background {
+  background: linear-gradient(135deg, #e1baba85, #9bffc3d8);
+}
+
+.auth-background {
+  background: linear-gradient(145deg, #4c9f6fb6, #e9eefa);
+}
+
+.sidenav-background {
+  background: linear-gradient(to right, #3ef88bbc, #ffffff6b);
+  transition: all 0.5s ease-in-out;
+  opacity: 1; /* Initial state */
+  transform: translateY(0);
+}
+
+.clip-right {
+  overflow: hidden;
+  clip-path: polygon(4% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.border-active::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 3px;
+  background-color: #3ef88bbc;
+  animation: borderSpread 0.2s ease-in-out;
+}
+
+.border-inactive::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.2s ease-out;
+}
