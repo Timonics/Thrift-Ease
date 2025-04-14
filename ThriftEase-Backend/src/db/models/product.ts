@@ -14,22 +14,22 @@ class Product
   extends Model<ProductAttributes, ProductCreationAttributes>
   implements ProductAttributes
 {
-  public id?: number;
-  public name!: string;
-  public description!: string;
-  public price!: number;
-  public categoryId!: number;
-  public subCategoryId!: number;
-  public ownerId!: number;
-  public image!: string;
-  public images?: string[];
-  public stock!: number;
-  public condition!: ProductCondition;
-  public negotiable!: boolean;
-  public deliveryOptions!: string[];
-  public location!: string;
-  public status!: ProductStatus;
-  public discountPrice?: number;
+  declare id?: number;
+  declare name: string;
+  declare description: string;
+  declare price: number;
+  declare categoryId: number;
+  declare subCategoryId: number;
+  declare ownerId: number;
+  declare image: string;
+  declare images?: string[];
+  declare stock: number;
+  declare condition: ProductCondition;
+  declare negotiable: boolean;
+  declare deliveryOptions: string[];
+  declare location: string;
+  declare status: ProductStatus;
+  declare discountPrice?: number;
 }
 
 Product.init(

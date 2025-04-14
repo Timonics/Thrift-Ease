@@ -37,7 +37,7 @@ const Hero: React.FC = () => {
             </Link>
             <Link
               className="p-2 flex items-center justify-center w-[150px] sm:w-[180px] shadow-lg shadow-gray-950/80 bg-[#2ECC71] text-[#34495E] font-bold transition ease-in-out duration-300 hover:bg-[#34495E] hover:text-[#2ECC71]"
-              to={"register"}
+              to={"auth/sign-up"}
             >
               Sign Up
             </Link>

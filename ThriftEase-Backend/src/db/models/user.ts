@@ -9,10 +9,10 @@ class User
   extends Model<UserAttributes, UserCreationAttributes>
   implements UserAttributes
 {
-  public id!: number;
-  public name!: string;
-  public email!: string;
-  public passwordHash!: string;
+  declare id: number;
+  declare name: string;
+  declare email: string;
+  declare passwordHash: string;
 }
 
 User.init(

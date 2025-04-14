@@ -10,9 +10,9 @@ class SubCategory
   extends Model<SubCategoryAttributes, SubCategoryCreationAttributes>
   implements SubCategoryAttributes
 {
-  public id?: number;
-  public name!: string;
-  public categoryId!: number
+  declare id?: number;
+  declare name: string;
+  declare categoryId: number
 }
 
 SubCategory.init(

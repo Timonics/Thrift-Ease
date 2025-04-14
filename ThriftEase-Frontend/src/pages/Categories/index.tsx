@@ -58,23 +58,23 @@ const Categories: React.FC = () => {
       <Link
         to={""}
         key={product.id}
-        className="relative shadow-slate-300/75 shadow-xl w-full sm:w-[220px] mx-5 sm:mx-2"
+        className="relative shadow-slate-500/75 shadow-2xl w-full sm:w-[270px] mx-5 sm:mx-3 rounded-b-xl pops"
       >
         <SoldOut />
         <img
           src="product-image"
           alt="Product-Image"
-          className="w-full h-[130px] bg-slate-800 outline-transparent focus:outline-transparent border-transparent"
+          className="w-full h-[130px] bg-slate-800 outline-transparent focus:outline-transparent border-transparent rounded-t-xl"
         />
-        <div className="py-3 px-2 gap-2 flex flex-col product-background">
+        <div className="py-3 px-2 gap-2 flex flex-col product-background rounded-b-xl">
           <h2 className="font-semibold text-xs">{"Name: " + product.name}</h2>
           <p className="text-xs font-light">
             {"Description: " + product.description}
           </p>
           <p className="text-sm font-extrabold">{"Price: $" + product.price}</p>
-        <div className="flex justify-center gap-7 mt-3 sm:justify-between items-center">
-          <button className="p-3 sm:p-1.5 px-3 pops mx-2 font-bold text-base sm:text-[11px]  bg-black/90 appgreen cursor-pointer">Add to Cart</button>
-          <button className="p-3 sm:p-1.5 px-3 pops mx-2 font-bold text-base sm:text-xs bg-black/90 appgreen cursor-pointer">Negotiate</button>
+        <div className="flex justify-center gap-5 mt-3 items-center">
+          <button className="p-3 sm:p-3 sm:px-3.5 px-3 pops mx-2 font-bold text-base sm:text-[13px] rounded-lg bg-black/90 appgreen cursor-pointer">Add to Cart</button>
+          <button className="p-3 sm:p-3 sm:px-3.5 px-3 pops mx-2 font-bold text-base sm:text-[13px] rounded-lg bg-black/90 appgreen cursor-pointer">Negotiate</button>
         </div>
         </div>
       </Link>
@@ -90,23 +90,23 @@ const Categories: React.FC = () => {
       <Link
         to={""}
         key={product.id}
-        className="relative shadow-slate-300/75 shadow-xl w-full sm:w-[220px] mx-5 sm:mx-2"
+        className="relative shadow-slate-500/75 shadow-2xl w-full sm:w-[270px] mx-5 sm:mx-3 rounded-b-xl pops"
       >
         <SoldOut />
         <img
           src="product-image"
           alt="Product-Image"
-          className="w-full h-[130px] bg-slate-800 outline-transparent focus:outline-transparent border-transparent"
+          className="w-full h-[130px] bg-slate-800 outline-transparent focus:outline-transparent border-transparent rounded-t-xl"
         />
-        <div className="py-3 px-2 gap-2 flex flex-col product-background">
+        <div className="py-3 px-2 gap-2 flex flex-col product-background rounded-b-xl">
           <h2 className="font-semibold text-xs">{"Name: " + product.name}</h2>
           <p className="text-xs font-light">
             {"Description: " + product.description}
           </p>
           <p className="text-sm font-extrabold">{"Price: $" + product.price}</p>
-          <div className="flex justify-center gap-7 mt-3 sm:justify-between items-center">
-          <button className="p-3 sm:p-1.5 px-3 pops mx-2 font-bold text-base sm:text-xs bg-black/90 appgreen cursor-pointer">Add to Cart</button>
-          <button className="p-3 sm:p-1.5 px-3 pops mx-2 font-bold text-base sm:text-xs bg-black/90 appgreen cursor-pointer">Negotiate</button>
+        <div className="flex justify-center gap-5 mt-3 items-center">
+          <button className="p-3 sm:p-3 sm:px-3.5 px-3 pops mx-2 font-bold text-base sm:text-[13px]  bg-black/90 appgreen cursor-pointer">Add to Cart</button>
+          <button className="p-3 sm:p-3 sm:px-3.5 px-3 pops mx-2 font-bold text-base sm:text-[13px] bg-black/90 appgreen cursor-pointer">Negotiate</button>
         </div>
         </div>
       </Link>
