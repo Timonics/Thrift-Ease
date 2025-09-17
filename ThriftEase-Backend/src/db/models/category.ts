@@ -9,9 +9,12 @@ class Category
   extends Model<CategoryAttributes, CategoryCreationAttributes>
   implements CategoryAttributes
 {
-  public id?: number;
-  public name!: string;
-  public description!: string;
+  declare id?: number;
+  declare name: string;
+  declare description: string;
+  declare icon?: string;
+  declare iconColor: string;
+  declare trending: boolean;
 }
 
 Category.init(
@@ -29,6 +32,20 @@ Category.init(
     description: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "shopping-bag",
+    },
+    iconColor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    trending: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
   },
   {

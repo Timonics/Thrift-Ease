@@ -12,7 +12,9 @@ class SubCategory
 {
   declare id?: number;
   declare name: string;
-  declare categoryId: number
+  declare categoryId: number;
+  declare icon: string;
+  declare iconColor: string;
 }
 
 SubCategory.init(
@@ -27,13 +29,22 @@ SubCategory.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      defaultValue: "shopping-bag",
+    },
+    iconColor: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     categoryId: {
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
         model: Category,
-        key: "id"
-      }
+        key: "id",
+      },
     },
   },
   {

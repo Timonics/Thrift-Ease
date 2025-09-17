@@ -1,14 +1,12 @@
 import React from "react";
-import { MdSell } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const Logo: React.FC = () => {
   return (
     <Link
       to={"/"}
-      className="font-black appgreen flex items-center text-sm pops"
+      className="text-green-500 text-lg font-bold font-heading rounded-lg"
     >
-      <MdSell />
       ThriftEase.
     </Link>
   );

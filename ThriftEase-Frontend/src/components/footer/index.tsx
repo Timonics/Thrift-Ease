@@ -1,70 +1,121 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
+import { Mail } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
-import { FaFacebook } from "react-icons/fa";
-import { FaXTwitter } from "react-icons/fa6";
-import { FaLinkedin } from "react-icons/fa";
+import { FaXTwitter, FaFacebookF } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
   return (
-    <div className="flex flex-col p-5 gap-10 items-center pt-5">
-      <Link
-        className="p-2 shadow-lg text-gray-800 w-fit mr-auto bg-[#2ECC71] font-bold pops mt-15 sm:mt-0"
-        to={""}
-      >
-        ThriftEase.
-      </Link>
-      <div className="flex flex-col sm:flex-row gap-5 lg:gap-15 sm:items-center items-start">
-        <div className="flex flex-col gap-3 justify-between w-[90%] sm:w-[70%] lg:w-[50%] mx-4 ">
-          <h3 className="text-lg font-bold text-[#2ECC71] monte">About Us</h3>
-          <p className="text-sm font-light text-[#34495E] rubik">
-            At ThriftEase, we believe that every item has a story and a second
-            chance. Our platform connects people looking to buy and sell
-            preloved items in a simple, safe, and sustainable way. Whether
-            you're decluttering your home or hunting for hidden treasures,
-            ThriftEase is the marketplace where second-hand goods find new
-            value. Our mission is to promote sustainability and community by
-            giving new life to used products. By making buying and selling easy,
-            we empower individuals to reduce waste and support a circular
-            economy. ThriftEase is more than just a platform—it's a movement
-            toward responsible consumption. Join us in creating a marketplace
-            where you can make a difference with every transaction.
+    <footer className="bg-slate-950 text-white py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-4 gap-8">
+          {/* Logo and Description */}
+          <div className="md:col-span-2">
+            <div className="flex items-center space-x-2 mb-4">
+              <div className="bg-primary text-black rounded-md hover:bg-primary/90 font-heading font-bold text-lg px-3 py-1">
+                ThriftEase.
+              </div>
+            </div>
+            <p className="font-secondary text-gray-400 leading-relaxed mb-6">
+              Making sustainable shopping accessible to everyone. Join our
+              community of conscious shoppers and discover unique thrifted
+              treasures.
+            </p>
+
+            {/* Newsletter Signup */}
+            <div className="space-y-4">
+              <h4 className="font-body font-semibold text-white">
+                Stay Updated
+              </h4>
+              <div className="flex gap-2">
+                <input
+                  placeholder="Enter your email"
+                  className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 w-[80%] p-2 rounded-lg"
+                />
+                <button className="bg-primary hover:bg-primary/90 text-white p-2 rounded-lg">
+                  <Mail className="w-6 h-6" />
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Quick Links */}
+          <div>
+            <h4 className="font-body font-semibold text-white mb-4">
+              Quick Links
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  className="font-secondary text-gray-400 hover:text-primary transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="font-secondary text-gray-400 hover:text-primary transition-colors"
+                >
+                  Terms of Service
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="font-secondary text-gray-400 hover:text-primary transition-colors"
+                >
+                  FAQ
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  className="font-secondary text-gray-400 hover:text-primary transition-colors"
+                >
+                  Support
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Social Media */}
+          <div>
+            <h4 className="font-body font-semibold text-white mb-4">
+              Follow Us
+            </h4>
+            <div className="flex space-x-4">
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <FaFacebookF size={20} />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <FaXTwitter size={20} />
+              </a>
+              <a
+                href="#"
+                className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <FaInstagram size={20} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="border-t border-gray-800 mt-12 pt-8 text-center">
+          <p className="font-body text-gray-400">
+            © 2025 ThriftEase. All rights reserved. Made with ♻️ for a
+            sustainable future.
           </p>
         </div>
-        <div className="flex flex-col sm:w-[30%] w-[50%] text-sm gap-3 font-medium pl-6 sm:pl-0 rubik">
-          <Link to={""}>How it works</Link>
-          <hr className="mr-2" />
-          <Link to={""}>FAQs</Link>
-          <hr className="mr-2" />
-          <Link to={""}>Contact Support</Link>
-        </div>
       </div>
-      <div className="flex gap-7 text-4xl text-[#2ECC71]">
-        <Link to={""}>
-          <FaInstagram />
-        </Link>
-        <Link to={""}>
-          <FaFacebook />
-        </Link>
-        <Link to={""}>
-          <FaXTwitter />
-        </Link>
-        <Link to={""}>
-          <FaLinkedin />
-        </Link>
-      </div>
-      <div className="flex flex-col items-center gap-4">
-        <div className="flex gap-5 text-sm">
-          <Link to={""}>Privacy Policy</Link>
-          <Link to={""}>Terms of Service</Link>
-          <Link to={""}>Cookie Policy</Link>
-        </div>
-        <p className="text-[11px] font-light">
-          © 2024 ThriftEase. All rights reserved.
-        </p>
-      </div>
-    </div>
+    </footer>
   );
 };
 

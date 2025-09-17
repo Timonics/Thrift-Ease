@@ -1,83 +1,60 @@
-import React, { useEffect, useState } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import React from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
 
-import HomeLayout from "../layouts/HomeLayout";
+import LandingPage from "../pages/landing";
+import AppContainer from "../layouts/AppContainer";
 import AuthLayout from "../layouts/AuthLayout";
+import Login from "../pages/auth/Login";
+import Register from "../pages/auth/Register";
+import ShopsPage from "../pages/shops";
+import CategoriesPage from "../pages/categories";
+import DashBoardPage from "../pages/dashboard";
+import SelectedCategoryPage from "../pages/categories/SelectedCategoryPage";
+import ProductPage from "../pages/products";
 
-import Home from "../pages/Home";
-import Intro from "../pages/Intro";
-import SplashScreen from "../pages/Splash-Screen";
-import Category from "../pages/Category";
-import Login from "../pages/Login";
-import Register from "../pages/Register";
-import ListLayout from "../layouts/ListLayout";
-import CategoryLayout from "../layouts/CategoryLayout";
-import { useApiContext } from "../contexts/ApiContext";
-import Categories from "../pages/Categories";
-import { useUrlCategoryName } from "../utils/urlHelper";
-import CartLayout from "../layouts/CartLayout";
-import DashboardLayout from "../layouts/DashboardLayout";
-import Account from "../pages/Account";
-import Settings from "../pages/Settings";
-import Support from "../pages/Support";
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppContainer />,
+    children: [
+      { path: "", element: <LandingPage /> },
+      {
+        path: "auth",
+        element: <AuthLayout />,
+        children: [
+          { path: "", element: <Login /> },
+          { path: "register", element: <Register /> },
+        ],
+      },
+      {
+        path: "shop",
+        element: <ShopsPage />,
+      },
+      {
+        path: "categories",
+        element: <CategoriesPage />,
+      },
+      {
+        path: "categories/:categoryID",
+        element: <SelectedCategoryPage />,
+      },
+      {
+        path: "products/:productID",
+        element: <ProductPage />,
+      },
+      {
+        path: "dashboard",
+        element: <DashBoardPage />,
+      },
+    ],
+  },
+]);
 
 const App: React.FC = () => {
-  const { categories } = useApiContext();
-  const [firstPageLoaded, setFirstPageLoaded] = useState(
-    localStorage.getItem("firstVisit")
-  );
-
-  useEffect(() => {
-    const handleStorageChange = () => {
-      setFirstPageLoaded(localStorage.getItem("firstVisit"));
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
-  }, []);
-
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          firstPageLoaded ? <Intro /> : <Navigate to="/welcome" replace />
-        }
-      />
-      <Route
-        path="welcome"
-        element={<SplashScreen setFirstPageLoaded={setFirstPageLoaded} />}
-      />
-      <Route path="home" element={<HomeLayout />}>
-        <Route index element={<Home />} />
-        <Route path="dashboard" element={<DashboardLayout />} />
-        <Route path="list-item" element={<ListLayout />} />
-        <Route path="my-cart" element={<CartLayout />} />
-        <Route path="category" element={<Category />} />
-      </Route>
-      <Route path="auth" element={<AuthLayout />}>
-        <Route path="sign-up" element={<Register />} />
-        <Route path="log-in" element={<Login />} />
-      </Route>
-      <Route path="categories" element={<CategoryLayout />}>
-        {categories.map((category) => {
-          const categoryPath = useUrlCategoryName(category);
-          return (
-            <Route
-              key={category.id}
-              path={categoryPath}
-              element={<Categories />}
-            />
-          );
-        })}
-      </Route>
-      <Route path="account" element={<Account />} />
-      <Route path="help-and-support" element={<Support />} />
-      <Route path="settings" element={<Settings />} />
-    </Routes>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
 };
 

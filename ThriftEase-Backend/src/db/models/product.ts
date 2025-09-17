@@ -25,7 +25,6 @@ class Product
   declare images?: string[];
   declare stock: number;
   declare condition: ProductCondition;
-  declare negotiable: boolean;
   declare deliveryOptions: string[];
   declare location: string;
   declare status: ProductStatus;
@@ -93,11 +92,6 @@ Product.init(
     condition: {
       type: DataTypes.ENUM(...Object.values(ProductCondition)),
       allowNull: false,
-    },
-    negotiable: {
-      type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
     },
     deliveryOptions: {
       type: DataTypes.JSONB,

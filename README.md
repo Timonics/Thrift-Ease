@@ -90,7 +90,7 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 4. Set up the database:
 
    - Create a PostgreSQL database.
-   - Update the `config/database.js` file with your database credentials.
+   - Update the `config/config.js` file with your database credentials.
 
 5. Run migrations to create tables:
 
@@ -113,7 +113,7 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 8. Open your browser and navigate to:
 
    ```
-   http://localhost:3000
+   http://localhost:3002
    ```
 
 ---

@@ -2,10 +2,9 @@ import { User } from "../db/models";
 import { Request, Response } from "express";
 import { compareSync, hashSync } from "bcryptjs";
 import { clearToken, generateToken } from "../utils/token.utils";
-import { UserAuthRequest } from "../interfaces/user.interface";
+import { UserAuthRequest, UserRole } from "../interfaces/user.interface";
 
-//admin level
-const getAllUsers = async (req: Request, res: Response) => {
+const getAllUsers = async (_: Request, res: Response) => {
   try {
     const allUsers = await User.findAll();
     if (!allUsers || allUsers.length === 0) {
@@ -18,8 +17,7 @@ const getAllUsers = async (req: Request, res: Response) => {
   }
 };
 
-//user level
-const getUserProfile = async (req: Request, res: Response) => {
+const getMyProfile = async (req: Request, res: Response) => {
   try {
     const userID = (req as UserAuthRequest).user;
     const user = await User.findByPk(userID);
@@ -35,7 +33,7 @@ const getUserProfile = async (req: Request, res: Response) => {
 
 const registerUser = async (req: Request, res: Response) => {
   try {
-    const { name, email, password, confirmPassword } = req.body;
+    const { name, email, password, confirmPassword, role } = req.body;
     const checkUserExists = await User.findOne({
       where: {
         email,
@@ -52,7 +50,7 @@ const registerUser = async (req: Request, res: Response) => {
     if (!isValidPassword) {
       res
         .status(400)
-        .json({ message: "Password and confirm password do not match" });
+        .json({ message: "Password confirmation do not match" });
       return;
     }
 
@@ -60,6 +58,7 @@ const registerUser = async (req: Request, res: Response) => {
       name,
       email,
       passwordHash,
+      role: role ?? UserRole.USER,
     });
 
     if (!user) {
@@ -92,7 +91,7 @@ const loginUser = async (req: Request, res: Response) => {
       return;
     }
 
-    const token = generateToken(checkUserExists.id, res);
+    const token = generateToken(checkUserExists.id, checkUserExists.role, res);
     if (!token) {
       res.status(400).json({ message: "Token Error: Token not generated" });
     }
@@ -110,7 +109,7 @@ const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-const logoutUser = async (req: Request, res: Response) => {
+const logoutUser = async (_: Request, res: Response) => {
   try {
     const logout = clearToken(res);
     if (!logout) {
@@ -123,4 +122,4 @@ const logoutUser = async (req: Request, res: Response) => {
   }
 };
 
-export { getAllUsers, getUserProfile, registerUser, loginUser, logoutUser };
+export { getAllUsers, getMyProfile, registerUser, loginUser, logoutUser };

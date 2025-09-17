@@ -1,6 +1,7 @@
 import {
   UserAttributes,
   UserCreationAttributes,
+  UserRole,
 } from "../../interfaces/user.interface";
 import dbConnect from "../config/dbConnect";
 import { DataTypes, Model } from "sequelize";
@@ -13,6 +14,7 @@ class User
   declare name: string;
   declare email: string;
   declare passwordHash: string;
+  declare role: UserRole;
 }
 
 User.init(
@@ -34,6 +36,11 @@ User.init(
     },
     passwordHash: {
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM(...Object.values(UserRole)),
+      defaultValue: "user",
       allowNull: false,
     },
   },

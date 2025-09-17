@@ -25,7 +25,7 @@ const dbConfig: Config = {
     database: process.env.DB_NAME || "thriftease",
     host: process.env.DB_HOST || "localhost",
     port: Number(process.env.DB_PORT) || 5432,
-    dialect: "postgres", // Explicitly set the dialect
+    dialect: "postgres",
   },
   test: {
     username: "root",

@@ -26,7 +26,6 @@ export interface ProductAttributes {
   images?: string[];
   stock: number;
   condition: ProductCondition;
-  negotiable: boolean;
   deliveryOptions: string[];
   location: string;
   status: ProductStatus;

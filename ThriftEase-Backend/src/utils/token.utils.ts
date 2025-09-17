@@ -1,16 +1,17 @@
 import { Response } from "express";
 import { sign } from "jsonwebtoken";
 import { config } from "dotenv";
+import { UserRole } from "../interfaces/user.interface";
 
 config();
 
-const generateToken = (userId: number, res: Response) => {
+const generateToken = (userId: number, userRole: UserRole, res: Response) => {
   const secret = process.env.JWT_SECRET;
   if (!secret) {
     throw new Error("JWT_SECRET not found");
   }
 
-  const token = sign({ userId }, secret, {
+  const token = sign({ userId, userRole }, secret, {
     expiresIn: "1h",
     algorithm: "HS256",
   });
