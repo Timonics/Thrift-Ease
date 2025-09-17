@@ -11,6 +11,7 @@ import CategoriesPage from "../pages/categories";
 import DashBoardPage from "../pages/dashboard";
 import SelectedCategoryPage from "../pages/categories/SelectedCategoryPage";
 import ProductPage from "../pages/products";
+import CartPage from "../pages/cart";
 
 const router = createBrowserRouter([
   {
@@ -46,6 +47,9 @@ const router = createBrowserRouter([
         path: "dashboard",
         element: <DashBoardPage />,
       },
+      {
+        path: "my-cart", element: <CartPage />
+      }
     ],
   },
 ]);

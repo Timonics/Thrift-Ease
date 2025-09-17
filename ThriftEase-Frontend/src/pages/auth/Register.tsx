@@ -13,9 +13,7 @@ const Register: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [successRegisterMsg, setSuccessRegisterMsg] = useState(false);
 
-  const { loading } = useSelector(
-    (state: RootState) => state.usersReducer
-  );
+  const { loading } = useSelector((state: RootState) => state.usersReducer);
 
   const [registerData, setRegisterData] = useState({
     name: "",
@@ -37,7 +35,6 @@ const Register: React.FC = () => {
     if (registerUser.fulfilled.match(registerResult)) {
       setSuccessRegisterMsg(true);
       setTimeout(() => {
-        setSuccessRegisterMsg(false);
         navigate("/dashboard");
       }, 3000);
     }
