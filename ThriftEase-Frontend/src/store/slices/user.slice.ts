@@ -5,6 +5,7 @@ import {
 } from "@reduxjs/toolkit";
 import axios from "axios";
 import type {
+  ProfileResponse,
   User,
   UserResponse,
   UserState,
@@ -31,7 +32,8 @@ export const registerUser = createAsyncThunk(
     try {
       const response = await axios.post(
         "http://localhost:3002/users/register",
-        registerData
+        registerData,
+        { withCredentials: true }
       );
       const userResponse = response.data as UserResponse;
       return userResponse.user;
@@ -47,7 +49,8 @@ export const loginUser = createAsyncThunk(
     try {
       const response = await axios.post(
         "http://localhost:3002/users/login",
-        loginData
+        loginData,
+        { withCredentials: true }
       );
       const userResponse = response.data as UserResponse;
       return userResponse.user;
@@ -56,6 +59,14 @@ export const loginUser = createAsyncThunk(
     }
   }
 );
+
+export const checkAuth = createAsyncThunk("users/check", async () => {
+  const response = await axios.get("http://localhost:3002/users/my-profile", {
+    withCredentials: true,
+  });
+  const userResponse = response.data as ProfileResponse;
+  return userResponse.profile;
+});
 
 const userSlice = createSlice({
   name: "userSlice",
@@ -98,6 +109,15 @@ const userSlice = createSlice({
         (state.isAuthenticated = false),
         (state.loading = false),
         (state.userData = null);
+    });
+
+    builder.addCase(checkAuth.fulfilled, (state, action) => {
+      state.userData = action.payload;
+      state.isAuthenticated = true;
+    });
+    builder.addCase(checkAuth.rejected, (state) => {
+      state.userData = null;
+      state.isAuthenticated = false;
     });
   },
 });

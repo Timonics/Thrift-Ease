@@ -27,6 +27,7 @@ export const authJwt = () => {
     { method: "GET", route: "/products/category/:categoryID" },
     { method: "GET", route: "/products/:productID" },
     { method: "GET", route: "/shops" },
+    { method: "GET", route: "/users/:userID" },
     { method: "POST", route: "/users/login" },
     { method: "POST", route: "/users/register" },
     { method: "POST", route: "/users/logout" },

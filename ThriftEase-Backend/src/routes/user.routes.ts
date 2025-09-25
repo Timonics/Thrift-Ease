@@ -8,10 +8,12 @@ import {
   registerUser,
   loginUser,
   logoutUser,
+  getUserProfile,
 } from "../APIs/user.api";
 
 router.get("/", protectedRoute, getAllUsers);
 router.get("/my-profile", protectedRoute, getMyProfile);
+router.get("/:userID", getUserProfile);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);

@@ -3,6 +3,7 @@ import Card from "../../../components/card";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../store/store";
 import CategoryIcon from "../../../utils/CategoryIcon";
+import { Link } from "react-router";
 
 const ProductCategories: React.FC = () => {
   const { categories } = useSelector(
@@ -21,7 +22,7 @@ const ProductCategories: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 lg:gap-6">
           {categories.map((category, index) => {
             return (
               <Card
@@ -43,9 +44,15 @@ const ProductCategories: React.FC = () => {
                       {category.name}
                     </h3>
                   </div>
-                  <button className="bg-primary hover:bg-primary/90 text-foreground font-body px-4 py-1 rounded-md mt-auto">
+                  <Link
+                    onClick={() =>
+                      window.scrollTo({ behavior: "smooth", top: 0 })
+                    }
+                    to={`/categories/${category.id}`}
+                    className="bg-primary hover:bg-primary/90 transition hover:scale-105 duration-300 ease-in-out text-background font-body px-4 py-1 rounded-md mt-auto"
+                  >
                     Explore
-                  </button>
+                  </Link>
                 </div>
               </Card>
             );

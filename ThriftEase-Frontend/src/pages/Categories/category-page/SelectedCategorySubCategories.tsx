@@ -40,7 +40,7 @@ const SelectedCategorySubCategories: React.FC = () => {
                 activeSubCategoryId === String(subcategory.id)
                   ? "border-primary"
                   : "border-foreground/25 hover:border-[#7FC291]"
-              }  transition-all duration-300 cursor-pointer group() => `}
+              }  transition-all duration-300 cursor-pointer`}
             >
               <div className="p-4 text-center">
                 <div

@@ -15,3 +15,7 @@ export interface UserResponse {
   message: string;
   user: User;
 }
+
+export interface ProfileResponse extends Omit<UserResponse, "user"> {
+  profile: User;
+}

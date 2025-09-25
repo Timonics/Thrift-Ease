@@ -29,6 +29,10 @@ export interface ProductState {
   error: string | null;
 }
 
+export interface CartState {
+  items: Product[]
+}
+
 export interface ProductResponse {
   message: string;
   products: Product[];

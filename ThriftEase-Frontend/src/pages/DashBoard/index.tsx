@@ -6,19 +6,28 @@ import ProductListing from "./components/ProductListing";
 import Footer from "../../components/footer";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
+import AuthenticationMsg from "../../components/authentication-msg";
+import AddProduct from "./components/AddProduct";
 
 const DashBoardPage: React.FC = () => {
-  const { userData } = useSelector((state: RootState) => state.usersReducer);
-
-  console.log(userData);
+  const { isAuthenticated } = useSelector(
+    (state: RootState) => state.usersReducer
+  );
 
   return (
     <>
-      <AnalyticsWidget />
-      <ProductCategories />
-      <Bidding />
-      <ProductListing />
-      <Footer />
+      {!isAuthenticated ? (
+        <AuthenticationMsg page="dashboard" />
+      ) : (
+        <>
+          <AnalyticsWidget />
+          <AddProduct />
+          <ProductCategories />
+          <Bidding />
+          <ProductListing />
+          <Footer />
+        </>
+      )}
     </>
   );
 };

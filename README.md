@@ -4,34 +4,17 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 
 ---
 
-## Features
-
-### User Features
-
-- **User Registration and Authentication**
-
-  - Google OAuth integration for quick and secure sign-in.
-
-- **Sell Items**
-
-  - List second-hand items with details like name, description, price, condition, and delivery options.
-  - Add multiple images to showcase products.
-
-- **Search and Explore**
-
-  - Search for products by keywords and categories.
-  - Filter by condition, price, and location.
-
-- **Negotiate Deals**
-
-  - Option to mark prices as negotiable and communicate directly with sellers.
-
-- **Dashboard**
-
-  - Manage listings and view favorite items and past orders.
+## ✨ Features
+- **User Authentication** – secure sign-up/login with JWT & refresh tokens  
+- **Product Listings** – add, edit, and manage thrifted items with images  
+- **Search & Filtering** – find products by category, price, or keywords  
+- **Featured Products** – admin-controlled spotlight items  
+- **Shopping Cart** – add/remove items, persistent across sessions  
+- **Order Management** – checkout flow and order tracking  
+- **Responsive UI** – mobile-friendly design built with modern React tooling
+- **Dashboard** - Manage listings and view favorite items and past orders.
 
 ### Admin Features
-
 - **Moderation**
   - Approve or reject listings.
   - Monitor user activity to ensure a safe trading environment.
@@ -115,30 +98,6 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
    ```
    http://localhost:3002
    ```
-
----
-
-## API Endpoints
-
-### Authentication
-
-- **POST** `/api/auth/login` - Log in a user.
-- **POST** `/api/auth/register` - Register a new user.
-- **POST** `/api/auth/logout` - Log out the user.
-
-### Products
-
-- **GET** `/api/products` - Get all products.
-- **GET** `/api/products/:id` - Get details of a specific product.
-- **POST** `/api/products` - Create a new product listing.
-- **PUT** `/api/products/:id` - Update a product.
-- **DELETE** `/api/products/:id` - Delete a product.
-
-### Search
-
-- **GET** `/api/products/search?query=<term>` - Search for products.
-
----
 
 
 ## Contributing

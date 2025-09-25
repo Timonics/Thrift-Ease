@@ -17,6 +17,27 @@ const getAllUsers = async (_: Request, res: Response) => {
   }
 };
 
+const getUserProfile = async (req: Request, res: Response) => {
+  try {
+    const { userID } = req.params;
+
+    const userId = Number(userID);
+    if (isNaN(userId)) {
+      res.status(400).json({ message: "User ID must be a number" });
+      return;
+    }
+
+    const user = await User.findByPk(userId);
+    if (!user) {
+      res.status(400).json({ message: "User not found" });
+      return;
+    }
+    res.status(200).json({ message: "success", profile: user });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const getMyProfile = async (req: Request, res: Response) => {
   try {
     const userID = (req as UserAuthRequest).user;
@@ -48,9 +69,7 @@ const registerUser = async (req: Request, res: Response) => {
     const isValidPassword = compareSync(confirmPassword, passwordHash);
 
     if (!isValidPassword) {
-      res
-        .status(400)
-        .json({ message: "Password confirmation do not match" });
+      res.status(400).json({ message: "Password confirmation do not match" });
       return;
     }
 
@@ -122,4 +141,11 @@ const logoutUser = async (_: Request, res: Response) => {
   }
 };
 
-export { getAllUsers, getMyProfile, registerUser, loginUser, logoutUser };
+export {
+  getAllUsers,
+  getMyProfile,
+  registerUser,
+  loginUser,
+  logoutUser,
+  getUserProfile,
+};

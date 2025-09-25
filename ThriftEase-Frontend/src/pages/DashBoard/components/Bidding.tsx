@@ -4,7 +4,7 @@ import Card from "../../../components/card";
 const Bidding: React.FC = () => {
   return (
     <section className="py-8 lg:py-12 bg-foreground/5 relative">
-      <div className="absolute top-0 left-0 h-full w-full bg-black/70 backdrop-blur-xs z-50 flex items-center justify-center text-4xl font-bold font-body text-white">
+      <div className="absolute top-0 left-0 h-full w-full bg-black/70 backdrop-blur-xs z-40 flex items-center justify-center text-4xl font-bold font-body text-white">
         Coming soon!!!
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

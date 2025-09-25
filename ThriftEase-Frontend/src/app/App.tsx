@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router";
 
 import LandingPage from "../pages/landing";
@@ -12,6 +12,11 @@ import DashBoardPage from "../pages/dashboard";
 import SelectedCategoryPage from "../pages/categories/SelectedCategoryPage";
 import ProductPage from "../pages/products";
 import CartPage from "../pages/cart";
+import AboutUsPage from "../pages/about";
+import CheckOutPage from "../pages/checkout";
+import type { AppDispatch } from "../store/store";
+import { useDispatch } from "react-redux";
+import { checkAuth } from "../store/slices/user.slice";
 
 const router = createBrowserRouter([
   {
@@ -48,13 +53,28 @@ const router = createBrowserRouter([
         element: <DashBoardPage />,
       },
       {
-        path: "my-cart", element: <CartPage />
-      }
+        path: "my-cart",
+        element: <CartPage />,
+      },
+      {
+        path: "checkout",
+        element: <CheckOutPage />,
+      },
+      {
+        path: "about-us",
+        element: <AboutUsPage />,
+      },
     ],
   },
 ]);
 
 const App: React.FC = () => {
+  const dispatch: AppDispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
   return (
     <>
       <RouterProvider router={router} />

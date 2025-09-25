@@ -6,6 +6,7 @@ import type { AppDispatch, RootState } from "../../store/store";
 import ProductDetails from "./ProductDetails";
 import ProductBreadCrumbs from "./ProductBreadCrumbs";
 import { FaSpinner } from "react-icons/fa";
+import Footer from "../../components/footer";
 
 const ProductPage: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -23,7 +24,7 @@ const ProductPage: React.FC = () => {
   }, [dispatch, productId]);
 
   if (loading) {
-    return <div className="absolute border w-full min-h-screen flex items-center justify-center">
+    return <div className="absolute w-full min-h-screen flex items-center justify-center">
       <FaSpinner className="animate-spin" />
     </div>;
   }
@@ -36,6 +37,7 @@ const ProductPage: React.FC = () => {
     <>
       <ProductBreadCrumbs product={productDetails} />
       <ProductDetails productDetails={productDetails} />
+      <Footer />
     </>
   );
 };

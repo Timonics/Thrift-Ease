@@ -10,7 +10,7 @@ const ProductBreadCrumbs: React.FC<ProductDetailsType> = ({ product }) => {
   return (
     <section className="py-4 bg-foreground/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center space-x-2 text-sm text-foreground/50 font-body">
+        <div className="flex items-center space-x-2 text-sm text-foreground/50 font-body overflow-hidden">
           <Link to="/" className="hover:text-primary transition-colors">
             Home
           </Link>
@@ -24,12 +24,12 @@ const ProductBreadCrumbs: React.FC<ProductDetailsType> = ({ product }) => {
           <span>/</span>
           <Link
             to={`/categories/${product.categoryId}`}
-            className="hover:text-primary transition-colors"
+            className="hover:text-primary transition-colors text-nowrap" 
           >
             {product.category.name}
           </Link>
           <span>/</span>
-          <span className="text-foreground font-medium">{product.name}</span>
+          <span className="text-foreground font-medium text-nowrap">{product.name}</span>
         </div>
       </div>
     </section>
