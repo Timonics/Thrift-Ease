@@ -21,7 +21,7 @@ const ShopsPage: React.FC = () => {
 
   return (
     <>
-      <div className="min-h-screen fixed top-22 left-0 w-full bg-black/80 border-t-2 border-white/30 backdrop-blur-xs pointer-events-none z-50 font-heading text-3xl flex items-center justify-center font-bold text-white">
+      <div className="min-h-screen fixed top-22 left-0 w-full bg-black/80 border-t-2 border-white/30 backdrop-blur-xs pointer-events-none z-40 font-heading text-3xl flex items-center justify-center font-bold text-white">
       Coming Soon !!!
       </div>
       <ShopsHeader />

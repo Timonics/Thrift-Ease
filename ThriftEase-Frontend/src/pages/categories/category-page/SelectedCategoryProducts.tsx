@@ -15,6 +15,8 @@ import Card from "../../../components/card";
 import placeholderImg from "../../../assets/leather-jacket.png";
 import { CgSpinner } from "react-icons/cg";
 
+import emptySubCategories from "../../../assets/svg/empty-categories.svg";
+
 const SelectedCategoryProducts: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const { categoryID } = useParams<{ categoryID: string }>();
@@ -74,12 +76,12 @@ const SelectedCategoryProducts: React.FC = () => {
 
         {/* Products Grid */}
         {loading ? (
-          <div className="h-[210px] flex items-center justify-center gap-3 font-heading text-2xl font-bold">
+          <div className="h-[200px] flex items-center justify-center gap-3 font-heading text-2xl font-bold">
             <CgSpinner size={24} className="animate-spin" />
             loading...
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 w-full relative min-h-[300px]">
             {baseProducts.length ? (
               baseProducts.map((product) => (
                 <Card
@@ -146,19 +148,26 @@ const SelectedCategoryProducts: React.FC = () => {
                 </Card>
               ))
             ) : (
-              <div className="text-lg font-body flex">
-                No products found for this filter
-              </div>
+              <Card className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-body text-lg font-bold items-center justify-center w-full max-w-2xl h-[200px] flex flex-col gap-4 mx-auto">
+                <img
+                  src={emptySubCategories}
+                  alt="empty sub-categories"
+                  className="size-30"
+                />
+                No products found
+              </Card>
             )}
           </div>
         )}
 
         {/* Load More */}
-        <div className="text-center mt-12">
-          <button className="border-primary text-primary hover:bg-primary hover:text-white px-8 bg-transparent border py-1 rounded-md font-body font-semibold">
-            Load More Products
-          </button>
-        </div>
+        {products && products.length > 0 && (
+          <div className="text-center mt-12">
+            <button className="border-primary text-primary hover:bg-primary hover:text-white px-8 bg-transparent border py-1 rounded-md font-body font-semibold">
+              Load More Products
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

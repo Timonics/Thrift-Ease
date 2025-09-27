@@ -10,6 +10,7 @@ import {
   deleteProduct,
 } from "../APIs/product.api";
 import { protectedRoute } from "../middleware/auth.middleware";
+import { upload } from "../config/cloudinaryConfig";
 
 // routes/product.routes.ts
 /**
@@ -18,7 +19,7 @@ import { protectedRoute } from "../middleware/auth.middleware";
  *   post:
  *     # ... (documentation will be inherited from controller)
  */
-router.post("/", protectedRoute, createProduct);
+router.post("/", protectedRoute, upload.single("image"), createProduct);
 
 /**
  * @swagger

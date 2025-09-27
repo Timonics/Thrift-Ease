@@ -1,5 +1,5 @@
 import React, { useState, type ChangeEvent } from "react";
-import { Link, useNavigate } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import Card from "../../components/card";
 import { Mail, EyeOff, Eye, Lock, Loader } from "lucide-react";
 import type { AppDispatch, RootState } from "../../store/store";
@@ -8,6 +8,10 @@ import { loginUser } from "../../store/slices/user.slice";
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = (location.state as { from?: string })?.from || "/dashboard";
+
   const dispatch: AppDispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -29,7 +33,7 @@ const Login: React.FC = () => {
     const loginResult = await dispatch(loginUser(loginData));
 
     if (loginUser.fulfilled.match(loginResult)) {
-      navigate("/dashboard");
+      navigate(from, { replace: true });
     }
   };
 

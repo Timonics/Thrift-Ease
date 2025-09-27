@@ -17,6 +17,15 @@ const getAllUsers = async (_: Request, res: Response) => {
   }
 };
 
+const getUserCount = async (_: Request, res: Response) => {
+  try {
+    const userCount = await User.count();
+    res.status(200).json({ message: "success", count: userCount });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const getUserProfile = async (req: Request, res: Response) => {
   try {
     const { userID } = req.params;
@@ -148,4 +157,5 @@ export {
   loginUser,
   logoutUser,
   getUserProfile,
+  getUserCount,
 };

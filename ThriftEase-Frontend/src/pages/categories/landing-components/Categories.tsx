@@ -2,9 +2,11 @@ import React from "react";
 import Card from "../../../components/card";
 import type { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
-import * as LucideIcons from "lucide-react";
 import { Link } from "react-router";
 import CategoryIcon from "../../../utils/CategoryIcon";
+
+import emptyCategory from "../../../assets/svg/empty-categories.svg";
+import { CgSpinner } from "react-icons/cg";
 
 const Categories: React.FC = () => {
   const { categories, loading, error } = useSelector(
@@ -75,17 +77,15 @@ const Categories: React.FC = () => {
           </div>
         )}
         {loading && (
-          <div className="min-h-[200px] flex items-center justify-center w-full">
-            <LucideIcons.Loader2
-              size={30}
-              className="animate-spin text-primary"
-            />
+          <div className="min-h-[400px] flex items-center justify-center w-full">
+            <CgSpinner className="w-12 h-12 text-foreground/75 animate-spin" />
           </div>
         )}
         {error && (
-          <div className="min-h-[600px] font-bold flex items-center justify-center w-full font-body text-2xl">
+          <Card className="min-h-[400px] font-bold flex flex-col items-center justify-center w-full font-body text-2xl">
+            <img src={emptyCategory} className="size-30 lg:size-50" />
             No Categories Found
-          </div>
+          </Card>
         )}
       </div>
     </section>

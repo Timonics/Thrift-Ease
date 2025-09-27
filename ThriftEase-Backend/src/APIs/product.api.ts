@@ -7,7 +7,6 @@ import {
   ProductStatus,
 } from "../interfaces/product.interface";
 import { UserAuthRequest } from "../interfaces/user.interface";
-import cloudinary from "../config/cloudinaryConfig";
 
 /**
  * @swagger
@@ -269,20 +268,11 @@ const createProduct = async (req: Request, res: Response) => {
       return;
     }
 
-    const base64Image = `data:${
-      req.file.mimetype
-    };base64,${req.file.buffer.toString("base64")}`;
-
-    const uploaderResponse = await cloudinary.uploader.upload(base64Image, {
-      folder: "products",
-    });
-
-    if (!uploaderResponse.secure_url) {
+    const imageUrl = (req.file as any).path;
+    if (!imageUrl) {
       res.status(500).json({ message: "Image upload failed" });
       return;
     }
-
-    const imageUrl = uploaderResponse.secure_url;
 
     const new_product = await Product.create({
       ...createProductData,

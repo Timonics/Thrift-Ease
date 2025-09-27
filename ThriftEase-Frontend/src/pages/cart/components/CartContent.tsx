@@ -15,6 +15,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeItem } from "../../../store/slices/cart.slice";
 import type { Product } from "../../../interfaces/product.interface";
 
+import emptyCart from "../../../assets/svg/empty-cart.svg";
+
 const CartContent: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const cartItems = useSelector((state: RootState) => state.cartReducer.items);
@@ -45,7 +47,7 @@ const CartContent: React.FC = () => {
   return (
     <section className="py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col md:flex-row items-start gap-4 md:items-center justify-between mb-8">
           <h1 className="font-heading font-bold text-3xl text-foreground">
             Shopping Cart
           </h1>
@@ -134,6 +136,7 @@ const CartContent: React.FC = () => {
               ))
             ) : (
               <div className="h-[300px] lg:h-full flex flex-col items-center justify-center gap-2">
+                <img src={emptyCart} alt="empty cart" className="size-30 md:size-50"/>
                 <h3 className="text-xl font-bold font-heading">
                   Your Cart is empty
                 </h3>
@@ -144,7 +147,7 @@ const CartContent: React.FC = () => {
                   }
                   to="/categories"
                 >
-                  <button className="border-primary mt-4 hover:bg-primary/90 px-2 py-1 rounded-md font-body text-white bg-primary">
+                  <button className="border-primary mt-6 hover:bg-primary/90 px-2 py-1 rounded-md font-body text-white bg-primary">
                     Continue Shopping
                   </button>
                 </Link>

@@ -17,6 +17,9 @@ import CheckOutPage from "../pages/checkout";
 import type { AppDispatch } from "../store/store";
 import { useDispatch } from "react-redux";
 import { checkAuth } from "../store/slices/user.slice";
+import AdminLayout from "../layouts/AdminLayout";
+import AdminDashBoard from "../pages/admin";
+import AdminLogin from "../pages/admin/AdminLogin";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,14 @@ const router = createBrowserRouter([
         children: [
           { path: "", element: <Login /> },
           { path: "register", element: <Register /> },
+        ],
+      },
+      {
+        path: "admin",
+        element: <AdminLayout />,
+        children: [
+          { path: "", element: <AdminDashBoard /> },
+          { path: "auth", element: <AdminLogin /> },
         ],
       },
       {
