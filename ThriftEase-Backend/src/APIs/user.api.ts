@@ -86,6 +86,7 @@ const registerUser = async (req: Request, res: Response) => {
       name,
       email,
       passwordHash,
+      isSeller: false,
       role: role ?? UserRole.USER,
     });
 
@@ -144,7 +145,7 @@ const logoutUser = async (_: Request, res: Response) => {
       res.status(400).json({ message: "Logout was unsuccessful" });
       return;
     }
-    res.status(200).json({ message: "Logged out successfully" });
+    res.status(200).json({ message: "You have been successfully logged out." });
   } catch (err) {
     console.error(err);
   }

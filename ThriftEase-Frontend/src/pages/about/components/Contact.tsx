@@ -43,7 +43,7 @@ const Contact: React.FC = () => {
                 Call Us
               </h3>
               <p className="font-body text-foreground/70 mb-4">
-                +1 (555) 123-4567
+                +234 (916) 199-2657
               </p>
               <button className="bg-primary hover:bg-primary/90 px-3 py-1 rounded-lg cursor-pointer text-white font-body">
                 Schedule Call
@@ -60,7 +60,7 @@ const Contact: React.FC = () => {
                 Visit Us
               </h3>
               <p className="font-body text-foreground/70 mb-4">
-                San Francisco, CA
+                Lagos, Nigeria
               </p>
               <button className="bg-primary hover:bg-primary/90 px-3 py-1 rounded-lg cursor-pointer text-white font-body">
                 Get Directions

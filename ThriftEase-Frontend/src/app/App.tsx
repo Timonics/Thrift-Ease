@@ -20,6 +20,7 @@ import { checkAuth } from "../store/slices/user.slice";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminDashBoard from "../pages/admin";
 import AdminLogin from "../pages/admin/AdminLogin";
+import ListMyProduct from "../pages/list-products";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "dashboard",
         element: <DashBoardPage />,
+      },
+      {
+        path: "listings/list-my-product",
+        element: <ListMyProduct />
       },
       {
         path: "my-cart",

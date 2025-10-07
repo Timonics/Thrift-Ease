@@ -14,6 +14,7 @@ class User
   declare name: string;
   declare email: string;
   declare passwordHash: string;
+  declare isSeller: boolean;
   declare role: UserRole;
 }
 
@@ -37,6 +38,11 @@ User.init(
     passwordHash: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    isSeller: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false,
     },
     role: {
       type: DataTypes.ENUM(...Object.values(UserRole)),

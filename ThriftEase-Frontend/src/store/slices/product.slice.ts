@@ -13,6 +13,7 @@ import axios from "axios";
 
 const initialState: ProductState = {
   products: [],
+  userProducts: [],
   productDetails: null,
   loading: false,
   error: null,
@@ -61,6 +62,22 @@ export const fetchProductDetails = createAsyncThunk(
   }
 );
 
+export const fetchUserProducts = createAsyncThunk(
+  "products/fetchUserProducts",
+  async (_, thunkAPI) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3002/products/my-products",
+        { withCredentials: true }
+      );
+      const productResponse = response.data as ProductResponse;
+      return productResponse.products;
+    } catch (err: any) {
+      return thunkAPI.rejectWithValue(err.name);
+    }
+  }
+);
+
 const productSlice = createSlice({
   name: "products",
   initialState,
@@ -102,6 +119,19 @@ const productSlice = createSlice({
       }
     );
     builder.addCase(fetchProductDetails.rejected, (state, action) => {
+      (state.loading = false), (state.error = action.payload as string);
+    });
+
+    builder.addCase(fetchUserProducts.pending, (state) => {
+      (state.loading = true), (state.error = null);
+    });
+    builder.addCase(
+      fetchUserProducts.fulfilled,
+      (state, action: PayloadAction<Product[]>) => {
+        (state.loading = false), (state.userProducts  = action.payload);
+      }
+    );
+    builder.addCase(fetchUserProducts.rejected, (state, action) => {
       (state.loading = false), (state.error = action.payload as string);
     });
   },

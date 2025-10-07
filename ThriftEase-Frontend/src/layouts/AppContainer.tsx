@@ -12,7 +12,7 @@ const AppContainer: React.FC = () => {
   }, [dispatch]);
   
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col ">
+    <div className="min-h-scren bg-background text-foreground flex flex-col">
       <Nav />
       <Outlet />
     </div>

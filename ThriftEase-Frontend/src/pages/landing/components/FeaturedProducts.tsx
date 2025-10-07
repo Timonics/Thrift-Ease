@@ -2,7 +2,7 @@ import { Heart, Star } from "lucide-react";
 import React from "react";
 import Card from "../../../components/card";
 
-const ProductListing: React.FC = () => {
+const FeaturedProducts: React.FC = () => {
   return (
     <section className="py-12 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -143,4 +143,4 @@ const ProductListing: React.FC = () => {
   );
 };
 
-export default ProductListing;
+export default FeaturedProducts;

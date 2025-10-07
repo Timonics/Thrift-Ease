@@ -12,6 +12,7 @@ export interface UserAttributes {
   name: string;
   email: string;
   passwordHash: string;
+  isSeller: boolean
   role: UserRole;
 }
 

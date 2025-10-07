@@ -283,6 +283,21 @@ const createProduct = async (req: Request, res: Response) => {
       res.status(404).json({ message: "Product is not created" });
       return;
     }
+
+    const update_user = await User.update(
+      { isSeller: true },
+      {
+        where: {
+          id: userId,
+        },
+      }
+    );
+
+    if (!update_user) {
+      res.status(400).json({ message: "User was not updated to a seller" });
+      return;
+    }
+
     res.status(200).json({ message: "Product successfully listed" });
   } catch (err: any) {
     console.error(err);
@@ -394,6 +409,30 @@ const getAllProductsByCategory = async (req: Request, res: Response) => {
     res
       .status(200)
       .json({ message: "success", products: all_products_under_category });
+  } catch (err: any) {
+    console.error("Error", err);
+    res
+      .status(500)
+      .json({ message: "Internal server error", error: err.message });
+  }
+};
+
+const getUserProducts = async (req: Request, res: Response) => {
+  try {
+    const userId = (req as UserAuthRequest).user;
+
+    const user_products = await Product.findAll({
+      where: {
+        ownerId: userId,
+      },
+    });
+    if (!user_products || user_products.length === 0) {
+      res.status(400).json({
+        message: `You don't have any products listed`,
+      });
+      return;
+    }
+    res.status(200).json({ message: "success", products: user_products });
   } catch (err: any) {
     console.error("Error", err);
     res
@@ -637,6 +676,7 @@ const deleteProduct = async (req: Request, res: Response) => {
 export {
   createProduct,
   getAllProducts,
+  getUserProducts,
   getProductDetails,
   updateProduct,
   deleteProduct,

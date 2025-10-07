@@ -9,14 +9,22 @@ import {
   ArrowLeft,
   Menu,
   Info,
+  LogOut,
+  User2,
 } from "lucide-react";
 import Logo from "../logo";
+import axios from "axios";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../store/store";
 import { BsShop } from "react-icons/bs";
+import { MdDashboard } from "react-icons/md";
 
 const Nav: React.FC = () => {
-  const [mode, setMode] = useState<"light" | "dark">("light");
+  const [mode, setMode] = useState<"light" | "dark">("dark");
+
+  const { isAuthenticated } = useSelector(
+    (state: RootState) => state.usersReducer
+  );
 
   useEffect(() => {
     if (mode === "dark") {
@@ -32,15 +40,29 @@ const Nav: React.FC = () => {
   const pathname = location.pathname;
 
   const cartItems = useSelector((state: RootState) => state.cartReducer.items);
-  const isAuthenticated = useSelector(
-    (state: RootState) => state.usersReducer.isAuthenticated
-  );
 
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
 
+  const [showUserOptions, setShowUserOptions] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("http://localhost:3002/users/logout", undefined, {
+        withCredentials: true
+      });
+    } catch (err) {
+      console.error("Error: ", err);
+    }
+  };
+
   return (
     <>
-      <div className="z-50 sticky top-0 flex items-center justify-between p-6 w-full bg-background/85 backdrop-blur-md border-b border-foreground/30">
+      <div
+        className="z-50 sticky top-0 flex items-center justify-between p-6 w-full bg-background/85 backdrop-blur-md border-b border-foreground/30"
+        onClick={() => {
+          if (showUserOptions) setShowUserOptions(false);
+        }}
+      >
         <div className="flex items-center gap-2">
           <Logo />
           {pathname.includes("admin") && (
@@ -81,7 +103,7 @@ const Nav: React.FC = () => {
             mobileNavIsOpen ? "translate-y-0" : "-translate-y-[100vh]"
           } shadow-2xl font-body text-xl font-bold`}
         >
-          <div className="flex flex-col items-center w-full gap-6">
+          <div className="flex flex-col items-start w-full gap-5 text-base">
             <div className="flex items-center justify-between w-full">
               <Logo />
               <div className="flex gap-3 items-center px-1 py-1 rounded-full bg-slate-700/20">
@@ -136,14 +158,28 @@ const Nav: React.FC = () => {
                 Account
               </button>
             )}
+            {!pathname.includes("dashboard") && (
+              <Link
+                to={"/dashboard"}
+                className="flex items-center gap-4 font-body bg-primary font-semibold text-foreground justify-center p-2 rounded-lg"
+                onClick={() => setMobileNavIsOpen(false)}
+              >
+                <MdDashboard />
+                My Dashboard
+              </Link>
+            )}
+            <div className="flex items-center gap-4 font-body text-foreground hover:text-red-500">
+              <LogOut />
+              Log out
+            </div>
             <Link
               to="my-cart"
-              className="hover:bg-primary/10 hover:text-primary relative p-2 rounded-full flex items-center gap-4 font-body"
+              className="hover:bg-primary/10 hover:text-primary relative py-2 rounded-full flex items-center gap-4 font-body"
               onClick={() => setMobileNavIsOpen(false)}
             >
               <ShoppingCart className="w-5 h-5" />
               {cartItems.length ? (
-                <span className="absolute top-0 right-0 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute top-0 -right-4 bg-primary text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                   {cartItems.length}
                 </span>
               ) : (
@@ -184,22 +220,54 @@ const Nav: React.FC = () => {
               >
                 About Us
               </Link>
-              {!isAuthenticated && (
-                <Link
-                  to="auth"
-                  className="flex items-center font-body transition-colors px-2 py-1 rounded-md hover:bg-primary/10 cursor-pointer hover:text-primary"
-                >
-                  Sign in
-                </Link>
-              )}
             </div>
+          )}
+
+          {!isAuthenticated && (
+            <Link
+              to="auth"
+              className="flex items-center font-body transition-colors px-2 py-1 rounded-md hover:bg-primary/10 cursor-pointer hover:text-primary"
+            >
+              Sign in
+            </Link>
           )}
 
           {!pathname.includes("admin") && (
             <div className="flex items-center space-x-8">
               {isAuthenticated && (
-                <button className="hover:bg-primary/10 p-2 rounded-lg bg-foreground/10 hover:text-primary">
+                <button
+                  onClick={() => setShowUserOptions(!showUserOptions)}
+                  className={`hover:bg-primary/10 p-2 rounded-lg ${
+                    showUserOptions
+                      ? "bg-primary/10 text-primary"
+                      : "bg-foreground/10"
+                  } hover:text-primary relative`}
+                >
                   <User className="w-5 h-5" />
+                  {showUserOptions && (
+                    <div className="p-4 border-2 border-foreground/20 shadow-lg gap-4 z-50 rounded-lg bg-background absolute top-10 w-[200px] left-1/2 -translate-x-1/2 flex flex-col items-center">
+                      {!pathname.includes("dashboard") && (
+                        <Link
+                          to={"/dashboard"}
+                          className="flex items-center gap-4 font-body hover:bg-primary font-semibold text-primary hover:text-background bg-primary/10 w-full justify-center p-2 rounded-lg"
+                        >
+                          <MdDashboard />
+                          My Dashboard
+                        </Link>
+                      )}
+                      <div className="flex items-center gap-4 font-body hover:text-background font-semibold border-2 text-foreground hover:bg-primary hover:border-0 w-full justify-center p-2 rounded-lg border-foreground/20">
+                        <User2 />
+                        Account
+                      </div>
+                      <div
+                        onClick={() => handleLogout()}
+                        className="flex items-center gap-4 font-body text-foreground hover:text-red-500"
+                      >
+                        <LogOut />
+                        Log out
+                      </div>
+                    </div>
+                  )}
                 </button>
               )}
               <Link

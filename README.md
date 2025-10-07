@@ -73,18 +73,18 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 4. Set up the database:
 
    - Create a PostgreSQL database.
-   - Update the `config/config.js` file with your database credentials.
+   - Update the `config/config.js` and `config/config.ts` file with your database credentials.
 
 5. Run migrations to create tables:
 
    ```bash
-   npx sequelize-cli db:migrate
+   npm run migrate
    ```
 
 6. Seed initial data (optional):
 
    ```bash
-   npx sequelize-cli db:seed:all
+   npm run seed
    ```
 
 7. Start the development server:

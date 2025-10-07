@@ -1,4 +1,3 @@
-
 import { expressjwt as jwt } from "express-jwt";
 import { CustomJWTPayload } from "../interfaces/user.interface";
 import { Request } from "express";
@@ -15,9 +14,11 @@ export const authJwt = () => {
     { method: "GET", route: "/users/my-profile" },
     { method: "POST", route: "/products/new-product" },
     { method: "PUT", route: "/products/:productID" },
+    { method: "GET", route: "/products/my-products" },
     { method: "DELETE", route: "/products/:productID" },
     { method: "POST", route: "/shops/new-shop" },
     { method: "PUT", route: "/shops/update-shop/:shopID" },
+    { method: "GET", route: "/orders/my-orders" },
   ];
 
   const PUBLIC_ROUTES = [
@@ -58,7 +59,9 @@ export const authJwt = () => {
       const payload = token.payload as CustomJWTPayload;
       const userRole = payload.role;
 
-      console.log(`[JWT] Checking access for ${method} ${path}, role: ${userRole}`);
+      console.log(
+        `[JWT] Checking access for ${method} ${path}, role: ${userRole}`
+      );
 
       //skips auth checks for admin
       if (userRole === "admin") return false;
@@ -67,11 +70,12 @@ export const authJwt = () => {
         const isAllowed = USER_ALLOWED_ROUTES.some(
           (route) => route.method === method && matchRoute(route.route, path)
         );
-        console.log(`[JWT] User route access ${isAllowed ? "granted" : "denied"}`);
-        return !isAllowed
+        console.log(
+          `[JWT] User route access ${isAllowed ? "granted" : "denied"}`
+        );
+        return !isAllowed;
       }
 
-  
       return true;
     },
   }).unless({
@@ -83,7 +87,9 @@ export const authJwt = () => {
         (route) => route.method === method && matchRoute(route.route, path)
       );
       if (isPublic) {
-        console.log(`[JWT] Public route: ${method} ${path} - skipping JWT check`);
+        console.log(
+          `[JWT] Public route: ${method} ${path} - skipping JWT check`
+        );
       }
 
       return isPublic;

@@ -2,6 +2,7 @@ export interface User {
   id?: number;
   name: string;
   email: string;
+  isSeller: boolean
 }
 
 export interface UserState {

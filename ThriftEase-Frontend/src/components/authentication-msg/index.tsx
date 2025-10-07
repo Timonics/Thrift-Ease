@@ -7,7 +7,7 @@ type AuthenticationMsgProp = {
 
 const AuthenticationMsg: React.FC<AuthenticationMsgProp> = ({ page }) => {
   return (
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black p-4 py-6 z-50 flex flex-col gap-4 items-center rounded-lg w-[90vw] max-w-sm">
+    <div className="absolute border border-white/50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-black p-4 py-6 flex flex-col gap-4 items-center rounded-lg w-[90vw] max-w-sm">
       <h2 className="font-heading text-xl text-center text-white/70">
         Log in or Sign up to {page}
       </h2>

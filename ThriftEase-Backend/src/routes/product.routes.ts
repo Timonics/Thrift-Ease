@@ -8,6 +8,7 @@ import {
   updateProduct,
   getAllProducts,
   deleteProduct,
+  getUserProducts,
 } from "../APIs/product.api";
 import { protectedRoute } from "../middleware/auth.middleware";
 import { upload } from "../config/cloudinaryConfig";
@@ -44,6 +45,8 @@ router.get("/category/:categoryID", getAllProductsByCategory);
  *     # ... (documentation will be inherited from controller)
  */
 router.get("/:productID", getProductDetails);
+
+router.get("/my-products", protectedRoute, getUserProducts)
 
 /**
  * @swagger

@@ -31,6 +31,31 @@ const getOrder = async (req: Request, res: Response) => {
   }
 };
 
+const getUserOrders = async (req: Request, res: Response) => {
+  try {
+    const userId = (req as UserAuthRequest).user;
+
+    const orders = await Order.findAll({
+      where: {
+        buyerId: userId,
+      },
+      include: [{
+        model: Product,
+        as: "product"
+      }, {
+        
+      }],
+    });
+    if (!orders || orders.length === 0) {
+      res.status(400).json({ message: "No orders yet" });
+      return;
+    }
+    res.status(200).json({ message: "success", orders });
+  } catch (err) {
+    console.error(err);
+  }
+};
+
 const createOrder = async (req: Request, res: Response) => {
   try {
     const userId = (req as UserAuthRequest).user;
@@ -62,4 +87,4 @@ const createOrder = async (req: Request, res: Response) => {
   }
 };
 
-export { createOrder, getOrder };
+export { createOrder, getOrder, getUserOrders };

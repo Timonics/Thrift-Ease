@@ -14,6 +14,8 @@ import userRoutes from "./routes/user.routes";
 import categoryRoutes from "./routes/category.routes";
 import productRoutes from "./routes/product.routes";
 import shopRoutes from "./routes/shop.routes";
+import orderRoutes from "./routes/order.routes";
+
 import { authJwt } from "./authorization/auth";
 import { errorHandler } from "./middleware/error.middleware";
 
@@ -24,32 +26,33 @@ const swaggerOptions: swaggerJsdoc.Options = {
     info: {
       title: "ThriftEase. API Documentation",
       version: "1.0.0",
-      description: "API documentation for ThriftEase. application with JWT authentication",
+      description:
+        "API documentation for ThriftEase. application with JWT authentication",
       contact: {
         name: "API Support",
-        email: "support@example.com"
-      }
+        email: "support@example.com",
+      },
     },
     servers: [
       {
         url: `http://localhost:${process.env.PORT || 5000}`,
-        description: "Development server"
-      }
+        description: "Development server",
+      },
     ],
     components: {
       securitySchemes: {
         bearerAuth: {
           type: "http",
           scheme: "bearer",
-          bearerFormat: "JWT"
-        }
-      }
+          bearerFormat: "JWT",
+        },
+      },
     },
     security: [
       {
-        bearerAuth: []
-      }
-    ]
+        bearerAuth: [],
+      },
+    ],
   },
   apis: ["./src/routes/*.ts", "./src/APIs/*.ts"],
 };
@@ -78,6 +81,7 @@ app.use("/users", userRoutes);
 app.use("/categories", categoryRoutes);
 app.use("/products", productRoutes);
 app.use("/shops", shopRoutes);
+app.use("/orders", orderRoutes);
 
 // Health check endpoint
 /**
@@ -104,11 +108,11 @@ app.use("/shops", shopRoutes);
 app.get("/health", (_, res) => {
   res.json({
     status: "OK",
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   });
 });
 
-app.use(errorHandler)
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 

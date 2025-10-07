@@ -19,7 +19,7 @@ const CheckOutPage: React.FC = () => {
     </>
   ) : (
     <>
-      <div className="fixed bg-black/50 w-full h-full"/>
+      <div className="fixed bg-background w-full h-full"/>
       <AuthenticationMsg page="proceed to checkout"/>
     </>
   );

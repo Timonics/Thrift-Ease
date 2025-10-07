@@ -16,6 +16,6 @@ router.get("/my-profile", protectedRoute, getMyProfile);
 router.get("/:userID", getUserProfile);
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.post("/logout", logoutUser);
+router.post("/logout", protectedRoute, logoutUser);
 
 export default router;

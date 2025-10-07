@@ -60,6 +60,11 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const logoutUser = createAsyncThunk("users/logout", async () => {
+  const response = await axios.post("http://localhost:3002/users/logout");
+  return response.data;
+});
+
 export const checkAuth = createAsyncThunk("users/check", async () => {
   const response = await axios.get("http://localhost:3002/users/my-profile", {
     withCredentials: true,
@@ -118,6 +123,19 @@ const userSlice = createSlice({
     builder.addCase(checkAuth.rejected, (state) => {
       state.userData = null;
       state.isAuthenticated = false;
+    });
+
+    builder.addCase(logoutUser.pending, (state) => {
+      (state.loading = true), (state.error = null);
+    });
+    builder.addCase(logoutUser.fulfilled, (state) => {
+      (state.loading = false),
+        (state.isAuthenticated = false),
+        (state.userData = null),
+        (state.error = null);
+    });
+    builder.addCase(logoutUser.rejected, (state, action) => {
+      (state.error = action.payload as string), (state.loading = false);
     });
   },
 });
