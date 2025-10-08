@@ -36,7 +36,7 @@ const SelectedCategoryProducts: React.FC = () => {
   }, [dispatch]);
 
   const { products, loading } = useSelector(
-    (state: RootState) => state.productsReducer
+    (state: RootState) => state.products
   );
 
   const baseProducts = activeSubCategoryId

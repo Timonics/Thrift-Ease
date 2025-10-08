@@ -21,6 +21,7 @@ export interface CategoryState {
   categories: Category[];
   subCategories: SubCategory[];
   loading: boolean;
+  subCategoriesLoading: boolean;
   error: string | null;
 }
 

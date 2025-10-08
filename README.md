@@ -5,16 +5,18 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 ---
 
 ## ✨ Features
-- **User Authentication** – secure sign-up/login with JWT & refresh tokens  
-- **Product Listings** – add, edit, and manage thrifted items with images  
-- **Search & Filtering** – find products by category, price, or keywords  
-- **Featured Products** – admin-controlled spotlight items  
-- **Shopping Cart** – add/remove items, persistent across sessions  
-- **Order Management** – checkout flow and order tracking  
+
+- **User Authentication** – secure sign-up/login with JWT & refresh tokens
+- **Product Listings** – add, edit, and manage thrifted items with images
+- **Search & Filtering** – find products by category, price, or keywords
+- **Featured Products** – admin-controlled spotlight items
+- **Shopping Cart** – add/remove items, persistent across sessions
+- **Order Management** – checkout flow and order tracking
 - **Responsive UI** – mobile-friendly design built with modern React tooling
 - **Dashboard** - Manage listings and view favorite items and past orders.
 
 ### Admin Features
+
 - **Moderation**
   - Approve or reject listings.
   - Monitor user activity to ensure a safe trading environment.
@@ -54,67 +56,107 @@ ThriftEase is a platform where users can buy and sell second-hand products with 
 
 1. Clone the repository:
 
-   ```bash
+```bash
    git clone https://github.com/timonics/thrift-ease.git
-   ```
+```
 
-2. Navigate to the project directory:
+2. Navigate to the project backend directory:
 
-   ```bash
-   cd thriftease
-   ```
+```bash
+   cd Thriftease-Backend
+```
 
 3. Install dependencies:
 
-   ```bash
+```bash
    npm install
-   ```
+```
 
 4. Set up the database:
 
    - Create a PostgreSQL database.
    - Update the `config/config.js` and `config/config.ts` file with your database credentials.
 
-5. Run migrations to create tables:
+5. Create a .env file in the backend folder and populate with your credientials
 
-   ```bash
+```bash
+   PORT = 3002
+   NODE_ENV = development
+   JWT_SECRET = your-jwt-secret
+   DB_USERNAME = postgres
+   DB_PASSWORD = your-db-password
+   DB_NAME = your-cb-name
+   DB_HOST = your-db-host
+   DB_PORT = your-db-port
+   DB_DIALECT = postgres
+   CLOUDINARY_NAME = your-cloudinary-name
+   CLOUDINARY_API_KEY = your-cloudinary-api-key
+   CLOUDINARY_SECRET = your-cloudinary-secret
+```
+
+6. Run migrations to create tables:
+
+```bash
    npm run migrate
-   ```
+```
 
-6. Seed initial data (optional):
+7. Seed initial data (optional):
 
-   ```bash
+```bash
    npm run seed
-   ```
+```
 
-7. Start the development server:
+8. Start the development server:
 
-   ```bash
+```bash
    npm run dev
-   ```
+```
 
-8. Open your browser and navigate to:
+9. Open your browser and navigate to:
 
-   ```
-   http://localhost:3002
-   ```
+```
+   http://localhost:3002/api-docs
+```
 
+10. Navigate to the project frontend directory:
+
+```bash
+cd thriftease-frontend
+```
+
+11. Install dependencies:
+
+```bash
+npm install
+```
+
+12. Start the development frontend:
+
+```bash
+   npm run dev
+```
+
+13. Open your browser and navigate to:
+
+```
+   http://localhost:5173
+```
 
 ## Contributing
 
 1. Fork the repository.
 2. Create a feature branch:
-   ```bash
+```bash
    git checkout -b feature/your-feature-name
-   ```
+```
 3. Commit your changes:
-   ```bash
+```bash
    git commit -m "Add your message here"
-   ```
+```
 4. Push to the branch:
-   ```bash
+```bash
    git push origin feature/your-feature-name
-   ```
+```
 5. Create a pull request.
 
 ---
@@ -127,5 +169,8 @@ This project is licensed under the [MIT License](LICENSE).
 
 ## Contact
 
-For questions, suggestions, or support, please reach out at [support@thriftease.com](mailto\:support@thriftease.com).
+For questions, suggestions, or support, please reach out at [support@thriftease.com](mailto:support@thriftease.com).
 
+```
+
+```

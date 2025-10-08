@@ -11,7 +11,7 @@ const MyListings: React.FC = () => {
   const dispatch = useDispatch();
 
   const { userProducts, loading, error } = useSelector(
-    (state: RootState) => state.productsReducer
+    (state: RootState) => state.products
   );
 
   useEffect(() => {

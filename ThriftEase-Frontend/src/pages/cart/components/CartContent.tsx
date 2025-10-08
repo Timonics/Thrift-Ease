@@ -19,7 +19,7 @@ import emptyCart from "../../../assets/svg/empty-cart.svg";
 
 const CartContent: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
-  const cartItems = useSelector((state: RootState) => state.cartReducer.items);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const handleRemoveCartItem = (product: Product) => {
     dispatch(removeItem(product));
@@ -71,13 +71,13 @@ const CartContent: React.FC = () => {
                           alt={item.name}
                           className="w-24 h-24 object-cover rounded-lg bg-foreground/10 font-body"
                         />
-                        {/* {!item.inStock && (
-                        <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
-                          <span className="text-white text-xs font-semibold font-body">
-                            Out of Stock
-                          </span>
-                        </div>
-                      )} */}
+                        {!item.stock && (
+                          <div className="absolute inset-0 bg-black/50 rounded-lg flex items-center justify-center">
+                            <span className="text-white text-xs font-semibold font-body">
+                              Out of Stock
+                            </span>
+                          </div>
+                        )}
                       </div>
 
                       <div className="flex-1">
@@ -136,7 +136,11 @@ const CartContent: React.FC = () => {
               ))
             ) : (
               <div className="h-[300px] lg:h-full flex flex-col items-center justify-center gap-2">
-                <img src={emptyCart} alt="empty cart" className="size-30 md:size-50"/>
+                <img
+                  src={emptyCart}
+                  alt="empty cart"
+                  className="size-30 md:size-50"
+                />
                 <h3 className="text-xl font-bold font-heading">
                   Your Cart is empty
                 </h3>

@@ -10,7 +10,7 @@ import { CgSpinner } from "react-icons/cg";
 
 const Categories: React.FC = () => {
   const { categories, loading, error } = useSelector(
-    (state: RootState) => state.categoriesReducer
+    (state: RootState) => state.categories
   );
 
   return (

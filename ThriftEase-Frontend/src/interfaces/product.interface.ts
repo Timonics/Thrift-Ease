@@ -1,7 +1,7 @@
 import type { Category, SubCategory } from "./category.interface";
 import type { User } from "./user.interface";
 
-export interface  Product {
+export interface Product {
   id?: number;
   name: string;
   description: string;

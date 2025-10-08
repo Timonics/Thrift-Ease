@@ -13,7 +13,7 @@ const Register: React.FC = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [successRegisterMsg, setSuccessRegisterMsg] = useState(false);
 
-  const { loading } = useSelector((state: RootState) => state.usersReducer);
+  const { loading } = useSelector((state: RootState) => state.users);
 
   const [registerData, setRegisterData] = useState({
     name: "",

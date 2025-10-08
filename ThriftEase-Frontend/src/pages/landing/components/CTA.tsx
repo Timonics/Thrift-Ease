@@ -4,7 +4,7 @@ import { Link } from "react-router";
 import type { RootState } from "../../../store/store";
 
 const CTA: React.FC = () => {
-  const isAuthenticated = useSelector((state: RootState) => state.usersReducer.isAuthenticated)
+  const isAuthenticated = useSelector((state: RootState) => state.users.isAuthenticated)
 
   return (
     <section className="py-20 bg-primary/75">

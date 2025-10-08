@@ -25,7 +25,7 @@ type ProductDetailsType = {
 };
 
 const ProductDetails: React.FC<ProductDetailsType> = ({ productDetails }) => {
-  const cartItems = useSelector((state: RootState) => state.cartReducer.items);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const addedToCart = cartItems.filter((item) => item.id == productDetails.id);
 

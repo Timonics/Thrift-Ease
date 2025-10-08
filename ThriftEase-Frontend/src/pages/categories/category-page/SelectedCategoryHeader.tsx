@@ -12,7 +12,7 @@ const SelectedCategoryHeader: React.FC = () => {
   if (isNaN(categoryId)) return "category id param is not a number";
 
   const { categories, loading } = useSelector(
-    (state: RootState) => state.categoriesReducer
+    (state: RootState) => state.categories
   );
 
   const selectedCategory = categories.filter(

@@ -128,7 +128,7 @@ const productSlice = createSlice({
     builder.addCase(
       fetchUserProducts.fulfilled,
       (state, action: PayloadAction<Product[]>) => {
-        (state.loading = false), (state.userProducts  = action.payload);
+        (state.loading = false), (state.userProducts = action.payload);
       }
     );
     builder.addCase(fetchUserProducts.rejected, (state, action) => {

@@ -28,9 +28,9 @@ export interface ProductAttributes {
   condition: ProductCondition;
   deliveryOptions: string[];
   location: string;
-  status: ProductStatus;
+  status?: ProductStatus;
   discountPrice?: number;
 }
 
 export interface ProductCreationAttributes
-  extends Optional<ProductAttributes, "id" | "discountPrice" | "images"> {}
+  extends Optional<ProductAttributes, "id" | "discountPrice" | "images"| "status"> {}

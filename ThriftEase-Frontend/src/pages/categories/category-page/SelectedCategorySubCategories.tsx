@@ -23,7 +23,7 @@ const SelectedCategorySubCategories: React.FC = () => {
   }, [dispatch, categoryId]);
 
   const { subCategories, loading } = useSelector(
-    (state: RootState) => state.categoriesReducer
+    (state: RootState) => state.categories
   );
 
   return (

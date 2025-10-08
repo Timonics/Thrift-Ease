@@ -13,7 +13,11 @@ const Listing: React.FC = () => {
             Sell your thrifted items by listing your product
           </p>
         </div>
-        <Link to={"/listings/list-my-product"} className="bg-background w-fit mx-auto text-foreground font-body font-semibold px-6 py-3 rounded-md hover:bg-primary/90 transition">
+        <Link
+          onClick={() => window.scrollTo({ behavior: "smooth", top: 0 })}
+          to={"/listings/list-my-product"}
+          className="bg-background w-fit mx-auto text-foreground font-body font-semibold px-6 py-3 rounded-md hover:bg-primary/90 transition"
+        >
           List Your Product
         </Link>
       </div>

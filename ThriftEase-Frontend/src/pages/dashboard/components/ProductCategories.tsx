@@ -10,10 +10,8 @@ import emptyCategory from "../../../assets/svg/empty-categories.svg";
 
 const ProductCategories: React.FC = () => {
   const { categories, error, loading } = useSelector(
-    (state: RootState) => state.categoriesReducer
+    (state: RootState) => state.categories
   );
-
-  console.log(categories);
 
   return (
     <section className="py-8 lg:py-12 bg-foreground/10">

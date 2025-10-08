@@ -15,7 +15,7 @@ import type { RootState } from "../../../store/store";
 import { useSelector } from "react-redux";
 
 const CheckOutContent: React.FC = () => {
-  const cartItems = useSelector((state: RootState) => state.cartReducer.items);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const subtotal = cartItems.reduce(
     (sum, item) =>

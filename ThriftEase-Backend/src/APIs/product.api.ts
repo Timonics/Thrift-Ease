@@ -233,7 +233,7 @@ const createProduct = async (req: Request, res: Response) => {
   const userId = (req as UserAuthRequest).user;
   try {
     const createProductData: ProductCreationAttributes = req.body;
-    const { categoryId, subCategoryId, condition, status } = createProductData;
+    const { categoryId, subCategoryId, condition } = createProductData;
 
     const category_exists = await Category.findByPk(categoryId);
     if (!category_exists) {
@@ -258,31 +258,17 @@ const createProduct = async (req: Request, res: Response) => {
       return;
     }
 
-    if (!Object.values(ProductStatus).includes(status)) {
-      res.status(400).json({ message: "Invalid product status." });
+    const files = req.files as Express.Multer.File[];
+
+    if (!files || files.length === 0) {
+      res.status(400).json({ message: "At least one image is required" });
       return;
     }
 
-    if (!req.file) {
-      res.status(400).json({ message: "Image upload required" });
-      return;
-    }
+    const imageUrls = files.map((file) => file.path);
 
-    const imageUrl = (req.file as any).path;
-    if (!imageUrl) {
-      res.status(500).json({ message: "Image upload failed" });
-      return;
-    }
-
-    const new_product = await Product.create({
-      ...createProductData,
-      image: imageUrl,
-    });
-
-    if (!new_product) {
-      res.status(404).json({ message: "Product is not created" });
-      return;
-    }
+    const mainImg = imageUrls[0];
+    const otherImages = imageUrls.slice(1);
 
     const update_user = await User.update(
       { isSeller: true },
@@ -295,6 +281,17 @@ const createProduct = async (req: Request, res: Response) => {
 
     if (!update_user) {
       res.status(400).json({ message: "User was not updated to a seller" });
+      return;
+    }
+
+    const new_product = await Product.create({
+      ...createProductData,
+      image: mainImg,
+      images: otherImages,
+    });
+
+    if (!new_product) {
+      res.status(404).json({ message: "Product is not created" });
       return;
     }
 

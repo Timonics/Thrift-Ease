@@ -6,7 +6,7 @@ import type { RootState } from "../../../store/store";
 
 const AnalyticsWidget: React.FC = () => {
 
-  const cartArr = useSelector((state: RootState) => state.cartReducer.items)
+  const cartArr = useSelector((state: RootState) => state.cart.items)
 
   return (
     <section className="py-8 lg:py-12 bg-foreground/10">

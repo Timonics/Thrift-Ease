@@ -17,7 +17,7 @@ const ProductPage: React.FC = () => {
 
   // Fetch product details from the Redux store
   const { productDetails, loading, error } = useSelector(
-    (state: RootState) => state.productsReducer
+    (state: RootState) => state.products
   );
   useEffect(() => {
     dispatch(fetchProductDetails(productId));

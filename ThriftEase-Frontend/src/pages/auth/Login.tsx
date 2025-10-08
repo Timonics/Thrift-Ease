@@ -15,7 +15,7 @@ const Login: React.FC = () => {
   const dispatch: AppDispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
-  const { loading } = useSelector((state: RootState) => state.usersReducer);
+  const { loading } = useSelector((state: RootState) => state.users);
 
   const [loginData, setLoginData] = useState({
     email: "",

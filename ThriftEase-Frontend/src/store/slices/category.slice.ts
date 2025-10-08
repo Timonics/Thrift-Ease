@@ -15,6 +15,7 @@ import type {
 const initialState: CategoryState = {
   categories: [],
   subCategories: [],
+  subCategoriesLoading: false,
   loading: false,
   error: null,
 };
@@ -67,18 +68,20 @@ const categorySlice = createSlice({
     });
 
     builder.addCase(fetchSelectedCategorySubCategory.pending, (state) => {
-      (state.loading = true), (state.error = null);
+      (state.subCategoriesLoading = true), (state.error = null);
     });
     builder.addCase(
       fetchSelectedCategorySubCategory.fulfilled,
       (state, action: PayloadAction<SubCategory[]>) => {
-        (state.subCategories = action.payload), (state.loading = false);
+        (state.subCategories = action.payload),
+          (state.subCategoriesLoading = false);
       }
     );
     builder.addCase(
       fetchSelectedCategorySubCategory.rejected,
       (state, action) => {
-        (state.loading = false), (state.error = action.payload as string);
+        (state.subCategoriesLoading = false),
+          (state.error = action.payload as string);
       }
     );
   },

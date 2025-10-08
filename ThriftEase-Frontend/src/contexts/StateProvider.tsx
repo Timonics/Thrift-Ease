@@ -7,10 +7,16 @@ const StateProvider: React.FC<IState> = ({ children }) => {
   const [activeSubCategoryId, setActiveSubCategoryId] = useState<number | null>(
     null
   );
+  const [isDrafted, setIsDrafted] = useState<boolean>(false)
+  const [isDraftedError, setIsDraftedError] = useState<boolean>(false)
 
   const contextValues = {
     activeSubCategoryId,
     setActiveSubCategoryId,
+    isDrafted,
+    setIsDrafted,
+    isDraftedError,
+    setIsDraftedError
   };
   return (
     <AppContext.Provider value={contextValues}>{children}</AppContext.Provider>

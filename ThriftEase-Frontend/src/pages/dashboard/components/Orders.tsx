@@ -7,7 +7,7 @@ import emptyOrders from "../../../assets/svg/empty-categories.svg";
 
 const Orders: React.FC = () => {
   const { orders, loading, error } = useSelector(
-    (state: RootState) => state.orderReducer
+    (state: RootState) => state.orders
   );
 
   return (

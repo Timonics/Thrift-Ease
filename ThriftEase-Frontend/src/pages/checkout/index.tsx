@@ -8,7 +8,7 @@ import AuthenticationMsg from "../../components/authentication-msg";
 
 const CheckOutPage: React.FC = () => {
   const isAuthenticated = useSelector(
-    (state: RootState) => state.usersReducer.isAuthenticated
+    (state: RootState) => state.users.isAuthenticated
   );
 
   return isAuthenticated ? (

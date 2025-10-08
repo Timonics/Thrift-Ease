@@ -23,7 +23,7 @@ const Nav: React.FC = () => {
   const [mode, setMode] = useState<"light" | "dark">("dark");
 
   const { isAuthenticated } = useSelector(
-    (state: RootState) => state.usersReducer
+    (state: RootState) => state.users
   );
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const Nav: React.FC = () => {
   const location = useLocation();
   const pathname = location.pathname;
 
-  const cartItems = useSelector((state: RootState) => state.cartReducer.items);
+  const cartItems = useSelector((state: RootState) => state.cart.items);
 
   const [mobileNavIsOpen, setMobileNavIsOpen] = useState(false);
 
@@ -255,7 +255,7 @@ const Nav: React.FC = () => {
                           My Dashboard
                         </Link>
                       )}
-                      <div className="flex items-center gap-4 font-body hover:text-background font-semibold border-2 text-foreground hover:bg-primary hover:border-0 w-full justify-center p-2 rounded-lg border-foreground/20">
+                      <div className="flex items-center gap-4 font-body hover:text-background font-semibold border-2 text-foreground hover:bg-primary hover:border-primary w-full justify-center p-2 rounded-lg border-foreground/20">
                         <User2 />
                         Account
                       </div>
