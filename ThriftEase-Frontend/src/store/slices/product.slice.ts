@@ -10,6 +10,7 @@ import type {
   ProductState,
 } from "../../interfaces/product.interface";
 import axios from "axios";
+import { API_URL } from "../../utils/db_Url";
 
 const initialState: ProductState = {
   products: [],
@@ -23,7 +24,7 @@ export const fetchProducts = createAsyncThunk(
   "products/fetchProducts",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:3002/products");
+      const response = await axios.get(`${API_URL}products`);
       const productResponse = response.data as ProductResponse;
       return productResponse.products;
     } catch (err: any) {
@@ -37,7 +38,7 @@ export const fetchProductsByCategory = createAsyncThunk(
   async (categoryId: number, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/products/category/${categoryId}`
+        `${API_URL}products/category/${categoryId}`
       );
       const productResponse = response.data as ProductResponse;
       return productResponse.products;
@@ -52,7 +53,7 @@ export const fetchProductDetails = createAsyncThunk(
   async (productId: number, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/products/${productId}`
+        `${API_URL}products/${productId}`
       );
       const productResponse = response.data as ProductDetailsResponse;
       return productResponse.productDetails;
@@ -67,7 +68,7 @@ export const fetchUserProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3002/products/my-products",
+        `${API_URL}products/my-products`,
         { withCredentials: true }
       );
       const productResponse = response.data as ProductResponse;

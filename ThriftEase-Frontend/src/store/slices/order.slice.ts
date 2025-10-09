@@ -4,6 +4,7 @@ import type {
   OrderResponse,
   OrderState,
 } from "../../interfaces/order.interface";
+import { API_URL } from "../../utils/db_Url";
 
 const initialState: OrderState = {
   orders: [],
@@ -16,7 +17,7 @@ export const fetchUserOrders = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
-        "http://localhost:3002/orders/my-orders"
+        `${API_URL}orders/my-orders`
       );
       const orderResponse = response.data as OrderResponse;
       return orderResponse.orders;

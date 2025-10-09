@@ -11,6 +11,7 @@ import type {
   SubCategory,
   SubCategoryResponse,
 } from "../../interfaces/category.interface";
+import { API_URL } from "../../utils/db_Url";
 
 const initialState: CategoryState = {
   categories: [],
@@ -25,7 +26,7 @@ export const fetchCategories = createAsyncThunk(
   "categories/fetchCategories",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:3002/categories");
+      const response = await axios.get(`${API_URL}categories`);
       const categoryResponse = response.data as CategoryResponse;
       return categoryResponse.categories;
     } catch (err: any) {
@@ -39,7 +40,7 @@ export const fetchSelectedCategorySubCategory = createAsyncThunk(
   async (categoryId: number, thunkAPI) => {
     try {
       const response = await axios.get(
-        `http://localhost:3002/categories/${categoryId}/sub-categories`
+        `${API_URL}categories/${categoryId}/sub-categories`
       );
       const subCategoryResponse = response.data as SubCategoryResponse;
       return subCategoryResponse.categories;

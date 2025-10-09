@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import type { User } from "../../interfaces/user.interface";
 import type { Product } from "../../interfaces/product.interface";
 import axios from "axios";
+import { API_URL } from "../../utils/db_Url";
 
 type AdminState = {
   users: User[] | null;
@@ -17,7 +18,7 @@ const fetchAllUsers = createAsyncThunk(
   "admin/fetchAllUsers",
   async (_, thunkAPI) => {
     try {
-      const response = await axios.get("http://localhost:3002/users");
+      const response = await axios.get(`${API_URL}users`);
       const users = response.data as User[];
       return users;
     } catch (err: any) {

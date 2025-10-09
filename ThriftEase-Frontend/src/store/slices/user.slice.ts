@@ -10,6 +10,7 @@ import type {
   UserResponse,
   UserState,
 } from "../../interfaces/user.interface";
+import { API_URL } from "../../utils/db_Url";
 
 const initialState: UserState = {
   userData: null,
@@ -31,7 +32,7 @@ export const registerUser = createAsyncThunk(
   ) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/users/register",
+        `${API_URL}users/register`,
         registerData,
         { withCredentials: true }
       );
@@ -48,7 +49,7 @@ export const loginUser = createAsyncThunk(
   async (loginData: { email: string; password: string }, thunkAPI) => {
     try {
       const response = await axios.post(
-        "http://localhost:3002/users/login",
+        `${API_URL}users/login`,
         loginData,
         { withCredentials: true }
       );
@@ -61,12 +62,12 @@ export const loginUser = createAsyncThunk(
 );
 
 export const logoutUser = createAsyncThunk("users/logout", async () => {
-  const response = await axios.post("http://localhost:3002/users/logout");
+  const response = await axios.post(`${API_URL}users/logout`);
   return response.data;
 });
 
 export const checkAuth = createAsyncThunk("users/check", async () => {
-  const response = await axios.get("http://localhost:3002/users/my-profile", {
+  const response = await axios.get(`${API_URL}users/my-profile`, {
     withCredentials: true,
   });
   const userResponse = response.data as ProfileResponse;
