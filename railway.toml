@@ -1,0 +1,6 @@
+[build]
+  builder = "NIXPACKS"
+  root = "ThriftEase-Backend"
+
+[deploy]
+  startCommand = "npm start"
