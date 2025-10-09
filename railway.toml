@@ -1,5 +1,5 @@
 [build]
-  builder = "NIXPACKS"
+  engine = "nixpacks"
   root = "ThriftEase-Backend"
 
 [deploy]
