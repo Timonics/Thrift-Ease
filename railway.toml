@@ -1,6 +1,7 @@
 [build]
   engine = "nixpacks"
   root = "ThriftEase-Backend"
+  builder = "node"
 
 [deploy]
-  startCommand = "npm start"
+  startCommand = "npm run start"
